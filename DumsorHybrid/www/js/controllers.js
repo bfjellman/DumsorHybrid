@@ -72,7 +72,6 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
 
         if (window.localStorage.getItem("id") !== undefined) {
             $scope.id = window.localStorage.getItem("id");
-            alert("Test Local Storage");
         } else {
             $scope.id = String(id);
 
