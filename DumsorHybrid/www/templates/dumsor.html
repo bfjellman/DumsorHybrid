@@ -1,9 +1,20 @@
-<ion-view title="Dumsor" id="page3" class=" ">
-    <ion-content padding="true" class="has-header">
-        <button id="dumsor-button6" class=" button button-positive  button-block" ng-click="getLocation()">Get Location</button>
-        <button id="dumsor-button7" class=" button button-positive button-block" ng-click="getCurrentID()">{{id}}</button>
+<ion-view title="Dumsor" id="page3" class="center">
+    
+    <ion-content padding="true" class="has-header" ng-style="backgroundStyle">
 
-       
+        <div class="title">
+            <h2 ng-style="powerStyle" class="title padding-top padding-bottom">{{Power}}</h2>
+        </div>
 
-    </ion-content>
+
+        <div class="button-bar">
+            <a class="button {{onStyle}}" ng-click="powerOn(); backgroundStyle={'background-color':'white'}; powerStyle={'color':'black'}">On</a>
+            <a class="button {{offStyle}}" ng-click="getLocation(); backgroundStyle={'background-color':'black'}; powerStyle={'color':'white'}">Off</a>
+        </div>
+        <button id="dumsor-on" class="button button-positive button-block" ng-click="getLocation()">{{id}}</button>
+        <button id="dumsor-off" class="button button-positive button-block" ng-click="getCurrentID()">{{id}}</button>
+
+      
+
+</ion-content>
 </ion-view>
