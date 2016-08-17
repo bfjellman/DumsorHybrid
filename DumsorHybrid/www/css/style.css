@@ -3,7 +3,6 @@
 
 .center {
     text-align: center;
-    align-title: center;
 }
 
 .title {
@@ -13,6 +12,31 @@
 h2 {
 
     text-align: right;
+}
+
+.scroll-content {
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.scroll {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#icon {
+    max-height:100%;
+    margin: 0 auto;  
+    left: 0;
+    right: 0;  
+  
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+
 }
 
 

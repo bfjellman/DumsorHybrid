@@ -44,11 +44,15 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
         $scope.Power = "Power: ON";
         $scope.onStyle = "button-stable button-outline";
         $scope.offStyle = "button-dark";
+        $scope.currentImage = "lighton.png";
+
     }
     
 
 
     $scope.getLocation = function () {
+        
+        //todo add timer for on so can't turn on immediately, at least 10 seconds
 
         if (power) {
 
@@ -60,6 +64,7 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
             $scope.Power = "Power: OFF";
             $scope.offStyle = "button-stable button-outline";
             $scope.onStyle = "button-dark";
+            $scope.currentImage = "lightoff.png";
 
             var posOptions = { timeout: 10000, enableHighAccuracy: false };
             $cordovaGeolocation
