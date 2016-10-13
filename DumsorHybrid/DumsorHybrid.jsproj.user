@@ -3,4 +3,8 @@
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\bfjel\AppData\Local\Temp\pp4dveyw_DumsorHybrid_refcache</ReferenceCachePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
+    <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
+    <AndroidEmulatorID>AndroidEmulator;Google Android Emulator</AndroidEmulatorID>
+  </PropertyGroup>
 </Project>

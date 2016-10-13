@@ -30,6 +30,10 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.ionicblankapp"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "742787645051",
+            "PACKAGE_NAME": "com.ionicframework.ionicblankapp"
         }
     },
     "dependent_plugins": {
