@@ -1,33 +1,59 @@
+
+
+  
+
 angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
 
-  
-.controller('loginCtrl', function ($scope, $state, client) {
-    $scope.login = function (name) {
+.factory('cordovaReady', function ($rootScope, $q, $timeout) {
+    var loadingDeferred = $q.defer();
 
-        alert(name);
-
-
-        client.login(name).then(function succes(data) {
-            console.log('logged in succesfully..')
-            $state.go('dumsor');
-   
-        }, function (error) {
-            //login failed.
+    document.addEventListener('deviceready', function () {
+        $timeout(function () {
+            $rootScope.$apply(loadingDeferred.resolve);
         });
-    }
+    });
 
-    $scope.loginTest = function () {
+    return function cordovaReady() {
+        return loadingDeferred.promise;
+    };
+})
 
-        $state.go('dumsor');
 
-    }
+
   
+.controller('loginCtrl', function ($scope, $state, client, cordovaReady) {
+
+    cordovaReady().then(function () {
+
+        $scope.login = function (name) {
+
+            client.login(name).then(function succes(data) {
+
+                console.log('logged in succesfully..')
+                $state.go('dumsor');
+
+   
+            }, function (error) {
+                //login failed.
+            });
+        }
+
+        $scope.loginTest = function () {
+
+            $state.go('dumsor');
+
+        }
+    })
 
 })
    
-.controller('dumsorCtrl', function ($scope, $cordovaGeolocation, client) {
+.controller('dumsorCtrl', function ($scope, $cordovaGeolocation, client, cordovaReady) {
 
     var geoTable = client.getTable('GeoLocation');
+    cordovaReady().then(function () {
+        registerForPushNotifications();
+    })
+    
 
     //initialize task
     var task = {};
@@ -114,6 +140,7 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
 
     $scope.getCurrentID = function () {
 
+     
         if (window.localStorage.getItem("id") !== undefined) {
             $scope.id = window.localStorage.getItem("id");
         } else {
@@ -122,7 +149,53 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
         }
 
     }
-        $scope.id = String(id);
+    $scope.id = String(id);
+
+    // Register for Push Notifications. Requires that phonegap-plugin-push be installed.
+    var pushRegistration = null;
+    function registerForPushNotifications() {
+        pushRegistration = PushNotification.init({
+            android: { senderID: '74278764505' },
+            ios: { alert: 'true', badge: 'true', sound: 'true' },
+            wns: {}
+        });
+
+        // Handle the registration event.
+        pushRegistration.on('registration', function (data) {
+            // Get the native platform of the device.
+            var platform = device.platform;
+            // Get the handle returned during registration.
+            var handle = data.registrationId;
+            // Set the device-specific message template.
+            if (platform == 'android' || platform == 'Android') {
+                // Register for GCM notifications.
+                client.push.register('gcm', handle, {
+                    mytemplate: { body: { data: { message: "{$(messageParam)}" } } }
+                });
+            } else if (device.platform === 'iOS') {
+                // Register for notifications.            
+                client.push.register('apns', handle, {
+                    mytemplate: { body: { aps: { alert: "{$(messageParam)}" } } }
+                });
+            } else if (device.platform === 'windows') {
+                // Register for WNS notifications.
+                client.push.register('wns', handle, {
+                    myTemplate: {
+                        body: '<toast><visual><binding template="ToastText01"><text id="1">$(messageParam)</text></binding></visual></toast>',
+                        headers: { 'X-WNS-Type': 'wns/toast' }
+                    }
+                });
+            }
+        });
+
+        pushRegistration.on('notification', function (data, d2) {
+            alert('Push Received: ' + data.message);
+        });
+
+        pushRegistration.on('error', handleError);
+    }
+
+   
 }
 
 

@@ -32,4 +32,7 @@
   <plugin name="cordova-sqlite-storage" version="1.4.5" />
   <plugin name="cordova-plugin-compat" version="1.0.0" />
   <plugin name="cordova-plugin-geolocation" version="2.2.0" />
+  <plugin name="phonegap-plugin-push" version="1.8.1" src="https://github.com/phonegap/phonegap-plugin-push">
+    <variable name="SENDER_ID" value="742787645051" />
+  </plugin>
 </widget>
