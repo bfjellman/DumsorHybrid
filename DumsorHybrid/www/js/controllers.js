@@ -140,13 +140,13 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
 
     $scope.getCurrentID = function () {
 
-     
-        if (window.localStorage.getItem("id") !== undefined) {
+        window.open('http://mckayscience.org/DumsorVisual.html', '_blank');
+        /* if (window.localStorage.getItem("id") !== undefined) {
             $scope.id = window.localStorage.getItem("id");
         } else {
             $scope.id = String(id);
 
-        }
+        } */
 
     }
     $scope.id = String(id);
