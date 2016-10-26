@@ -27,14 +27,24 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services',
     $stateProvider
 
       .state('app.login', {
-          url: '/login',
+          url: '/',
           views: {
               'menuContent': {
                   templateUrl: 'templates/login.html',
-                  controller: 'LoginCtrl'
+                  controller: 'loginCtrl'
               }
           }
       })
+
+    .state('app.menu', {
+        url: '/',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/menu.html',
+                controller: 'menuCtrl'
+            }
+        }
+    })
 
     .state('app.dumsor', {
 
@@ -42,9 +52,19 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services',
         views: {
             'menuContent': {
                 templateUrl: 'templates/dumsor.html',
-                controller: 'DumsorCtrl'
+                controller: 'dumsorCtrl'
             }
         }      
+    })
+    .state('app.map', {
+
+        url: '/map',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/map.html',
+                controller: 'mapCtrl'
+            }
+        }
     })
 
  
