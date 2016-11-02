@@ -221,6 +221,8 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
 
     var lat = 5.6037;
     var long = 0.1870;
+    //How many days (max) of power off reports to show.
+    var powerOffDays = -3;
 
     var posOptions = { timeout: 10000, enableHighAccuracy: false };
     $cordovaGeolocation
@@ -263,16 +265,26 @@ angular.module('app.controllers', ['azure', 'ionic', 'ngCordova'])
             console.log("MADE IT TO SUCCESS");
             var numItemsRead = results.length;
 
-            //var testDate = new Date("1990-1-1");
+            var today = new Date();
             //console.log(testDate);
 
             for (var i = 0; i < results.length; i++) {
 
                 var row = results[i];
                 recordList.push(row);
-                //console.log(testDate > row.createdat);
-                locations.push(new Microsoft.Maps.Location(row.latitude, row.longitude));
 
+                if (row.power == 'off') {
+
+                    var dateDifference = row.updatedAt - today;
+                    //convert to days different
+                    dateDifference = (dateDifference / (1000 * 60 * 60 * 24));
+
+                    if (dateDifference > powerOffDays) {
+
+                        locations.push(new Microsoft.Maps.Location(row.latitude, row.longitude));
+
+                    }
+                }               
             }
 
 

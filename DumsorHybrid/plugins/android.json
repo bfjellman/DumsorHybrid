@@ -37,6 +37,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.ionicblankapp"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.ionicblankapp"
         }
     },
     "dependent_plugins": {
