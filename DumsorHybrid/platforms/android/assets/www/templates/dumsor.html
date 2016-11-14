@@ -3,14 +3,13 @@
     text-align: center;
 }
 
-.title {
-    text-align: center;
-}
 
-h4 {
-
-    text-align: center;
-    color: white;
+#onBtn {
+   font-size: x-large;
+   vertical-align: middle;
+   height: 20vw;
+   width:30vw;
+  
 }
 
 .scroll-content {
@@ -24,12 +23,19 @@ h4 {
   text-align: center;
 }
 
+#offBtn {
+   font-size: x-large;
+   vertical-align: middle;
+   height: 20vw;
+   width: 30vw;
+   
+}
+
 #icon {
     
-    width: 75% !important;
-    height: 75% !important;
-    max-width: 300px !important;
-    max-height: 300px !important;
+    width: 70vw !important;
+    height: 90vw !important;
+    
 
 }
 
@@ -38,26 +44,26 @@ h4 {
 
 
 
-<ion-view title="Report Power Outage" id="page3" class="center">
+<ion-view title="" id="page3" class="center">
     
-    <ion-content padding="true" class="has-header" style="background:black">
+    <ion-content style="background:black">
 
-        <div class="title">
-            <h4 class="title">{{Power}}</h4>
-        </div>
+       
+
+        <a id="onBtn"class="button {{onStyle}}" ng-click="powerOn(this); backgroundStyle={'background-color':'white'}">On</a>
+            
+        
 
         <div class="image">
             <img id="icon" src="img/{{currentImage}}"/>
         </div>
 
-
-        <div class="button-bar">
-            <a class="button {{onStyle}}" ng-click="powerOn(this); backgroundStyle={'background-color':'white'}">On</a>
-            <a class="button {{offStyle}}" ng-click="getLocation(this); backgroundStyle={'background-color':'black'}">Off</a>
-        </div>
-        
-        
       
+
+        <a id="offBtn" class="button {{offStyle}}" ng-click="getLocation(this); backgroundStyle={'background-color':'black'}">Off</a>
+
+       
+
 
 </ion-content>
 </ion-view>

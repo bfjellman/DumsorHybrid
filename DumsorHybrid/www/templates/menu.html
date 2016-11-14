@@ -1,18 +1,51 @@
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
 
-<ion-view title="Menu" id="page1" class="">
-    <ion-content padding="true" class="has-header" style="background-color:black">
-        <h1 class="padding-top"style="color:white; text-align:center">Menu</h1>
+    #report-power {
+        text-align: center;
+        font-size: larger;
+        vertical-align: middle;
+        text-shadow: 1px 1px 0px rgba(1, 1, 1, 1);
+        display:block; 
+        margin:0 auto; 
+        height: 25vh;
+        width: 25vh;
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+    }
 
-        
-        <div class="row">
-            <div class="col">
+    #menuTitle {
+        margin-top: 5vh;
+    }
+
+    #login-map {
+        text-align: center;
+        font-size: larger;
+        vertical-align: middle;
+        text-shadow: 1px 1px 0px rgba(1, 1, 1, 1);
+        display:block; 
+        margin:0 auto; 
+        height: 25vh;
+        width: 25vh;
+    }
+
+ 
+
+
+</style>
+<ion-view title="" id="page1" class="center">
+    <ion-content style="background-color:black">
+
+        <h1 id="menuTitle" class="padding-top"style="color:white; text-align:center">Menu</h1>
+
                 
-                <a id="report-power" class="button button-dark button-block" ng-click="reportPower()">&nbsp;&nbsp; Report Power On/Off</a>
-                <a id="login-map" class="button button-dark button-block" ng-click="mapTest()">&nbsp;&nbsp; View Power Outages</a>
+        <a id="report-power" class="center button button-calm button-block padding-bottom" ng-click="reportPower()">Report Power On/Off</a>
+        <a id="login-map" class="center button button-calm button-block" ng-click="mapTest()">View Power Outages</a>
 
 
-            </div>
-        </div>
+    
 
     </ion-content>
 </ion-view>
